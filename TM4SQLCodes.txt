@@ -1,0 +1,68 @@
+CREATE TABLE players
+(
+MembershipID INT(11) NOT NULL, 
+Firstname varchar(255) NOT NULL,
+Familyname varchar(255) NOT NULL,
+EmailAddress varchar(255),
+Phone varchar(255)
+);
+
+
+INSERT INTO players (MembershipID, FamilyName, FirstName, EmailAddress, Phone)
+VALUES 
+('1', 'Archer','Glen1','glennatcher@gmail.com','02102650358');
+('2', 'Archer','Glen2','glennatcher@gmail.com','02102650358');
+('3', 'Archer','Glen3','glennatcher@gmail.com','02102650358');
+('4', 'Archer','Glen4','glennatcher@gmail.com','02102650358');
+('5', 'Archer','Glen5','glennatcher@gmail.com','02102650358');
+
+
+
+DELETE FROM GameMembers
+WHERE MemberID=5;
+
+
+
+SELECT * from GameMembers
+  WHERE EmailAddress LIKE '%gmail%';
+
+
+CREATE TABLE BoardGames
+
+(
+BoardGameID INT(11) NOT NULL AUTO_INCREMENT=1
+BoardGamename varchar(255) NOT NULL,
+BoardGamePlayers INT(1) NOT NULL,
+);
+
+CREATE TABLE BoardGamesAssigned
+
+(
+BoardGamesAssignedID INT(11) NOT NULL AUTO_INCREMENT=1
+BoardGamename varchar(255) NOT NULL,
+FOREIGN KEY (M_Id) REFERENCES Players(MembershipId)
+FOREIGN KEY (BG_Id) REFERENCES BoardGames(BoardGameID)
+);
+
+
+CREATE TABLE BoardGamesSchedule
+
+(
+BoardGamesScheduleID INT(11) NOT NULL AUTO_INCREMENT=1
+Tournamentname varchar(255) NOT NULL,
+Tournamenttime varchar(255) NOT NULL,
+Tournamentvenue varchar(255) NOT NULL,
+);
+
+CREATE TABLE BoardGamesScoring
+(
+HighScoreID INT(11) NOT NULL AUTO_INCREMENT=1
+FOREIGN KEY (Game_Id) REFERENCES BOARDGAMES(BoardGamename)
+FOREIGN KEY (Player_Name) REFERENCES Players(FirstName)
+);
+
+
+
+
+
+
